@@ -1,10 +1,11 @@
-module github.com/gagliardetto/solana-go
+module github.com/decentralize-everything/solana-go
 
 go 1.19
 
 require (
 	github.com/gagliardetto/binary v0.8.0
 	github.com/gagliardetto/gofuzz v1.2.2
+	github.com/gagliardetto/solana-go v0.0.0-00010101000000-000000000000
 	github.com/gagliardetto/treeout v0.1.4
 	github.com/google/uuid v1.6.0
 )
@@ -33,7 +34,6 @@ require (
 	github.com/spf13/cast v1.3.0 // indirect
 	github.com/spf13/jwalterweatherman v1.0.0 // indirect
 	github.com/subosito/gotenv v1.2.0 // indirect
-	github.com/tidwall/pretty v1.2.0 // indirect
 	go.uber.org/atomic v1.7.0 // indirect
 	go.uber.org/multierr v1.6.0 // indirect
 	golang.org/x/net v0.0.0-20211112202133-69e39bad7dc2 // indirect
@@ -82,3 +82,5 @@ require (
 	golang.org/x/time v0.0.0-20191024005414-555d28b269f0
 	google.golang.org/api v0.29.0
 )
+
+replace github.com/gagliardetto/solana-go => ./
