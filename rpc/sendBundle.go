@@ -16,9 +16,11 @@ func (cl *Client) SendBundle(
 	if err != nil {
 		return solana.Signature{}, fmt.Errorf("encode transaction failed: %v", err)
 	}
+	signature = transaction.Signatures[0]
 
-	err = cl.rpcClient.CallForInto(ctx, &signature, "sendBundle", []interface{}{
-		base58.Encode(txData),
+	var sig string
+	err = cl.rpcClient.CallForInto(ctx, &sig, "sendBundle", []interface{}{
+		[]string{base58.Encode(txData)},
 	})
 	return
 }
