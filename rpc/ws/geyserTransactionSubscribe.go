@@ -4,6 +4,7 @@ import (
 	"strings"
 
 	"github.com/gagliardetto/solana-go"
+	"go.uber.org/zap"
 )
 
 type TransactionResult struct {
@@ -40,6 +41,12 @@ func (cl *Client) GeyserTransactionSubscribe(address string) (*LogSubscription, 
 		"transactionSubscribe",
 		"transactionUnsubscribe",
 		func(msg []byte) (interface{}, error) {
+			defer func() {
+				if r := recover(); r != nil {
+					zlog.Error("decoderFunc", zap.Any("recover", r))
+				}
+			}()
+
 			var res TransactionResult
 			err := decodeResponseFromMessage(msg, &res)
 			if err != nil {
