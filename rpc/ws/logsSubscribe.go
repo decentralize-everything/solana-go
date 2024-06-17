@@ -33,6 +33,9 @@ type LogResult struct {
 		// was able to execute (for example due to an invalid blockhash
 		// or signature verification failure)
 		Logs []string `json:"logs"`
+
+		// Geyser extended attribute.
+		TransactionBase64 string `json:"transactionBase64"`
 	} `json:"value"`
 }
 

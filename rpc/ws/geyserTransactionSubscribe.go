@@ -9,7 +9,8 @@ import (
 
 type TransactionResult struct {
 	Transaction struct {
-		Meta struct {
+		Transaction []string `json:"transaction"`
+		Meta        struct {
 			Log []string `json:"logMessages"`
 		} `json:"meta"`
 	} `json:"transaction"`
@@ -56,6 +57,7 @@ func (cl *Client) GeyserTransactionSubscribe(address string) (*LogSubscription, 
 			var logResult LogResult
 			logResult.Value.Logs = res.Transaction.Meta.Log
 			logResult.Value.Signature = res.Signature
+			logResult.Value.TransactionBase64 = res.Transaction.Transaction[0]
 			return &logResult, nil
 		},
 	)
