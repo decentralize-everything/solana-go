@@ -20,6 +20,6 @@ func BenchmarkGeyserTransactionSubscribe(t *testing.B) {
 
 	for {
 		event := <-sub.Response()
-		t.Log(event.Value.Signature)
+		t.Log(event)
 	}
 }
