@@ -35,8 +35,7 @@ type LogResult struct {
 		Logs []string `json:"logs"`
 
 		// Geyser extended attribute.
-		TransactionMeta *rpc.TransactionMeta `json:"transactionMeta"`
-		Message         solana.Message       `json:"message"`
+		TransactionResult *TransactionResult `json:"transactionResult"`
 	} `json:"value"`
 }
 

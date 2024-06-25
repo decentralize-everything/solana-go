@@ -18,8 +18,15 @@ func BenchmarkGeyserTransactionSubscribe(t *testing.B) {
 		return
 	}
 
+	count := 0
 	for {
 		event := <-sub.Response()
-		t.Log(event)
+		count += 1
+		if count%100 == 0 {
+			t.Log(count)
+		}
+		if event.Value.Err == nil {
+			t.Log(event.Value.Signature)
+		}
 	}
 }

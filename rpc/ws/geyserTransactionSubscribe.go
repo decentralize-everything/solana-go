@@ -12,6 +12,8 @@ type TransactionResult struct {
 	Transaction struct {
 		Transaction []string `json:"transaction"`
 		Meta        struct {
+			Err               interface{}        `json:"err"`
+			Status            interface{}        `json:"status"`
 			Fee               uint64             `json:"fee"`
 			PreBalances       []uint64           `json:"preBalances"`
 			PostBalances      []uint64           `json:"postBalances"`
@@ -60,22 +62,11 @@ func (cl *Client) GeyserTransactionSubscribe(address string) (*LogSubscription, 
 				return nil, err
 			}
 
-			tx, err := solana.TransactionFromBase64(res.Transaction.Transaction[0])
-			if err != nil {
-				return nil, err
-			}
-
 			var logResult LogResult
+			logResult.Value.Err = res.Transaction.Meta.Err
 			logResult.Value.Logs = res.Transaction.Meta.LogMessages
 			logResult.Value.Signature = res.Signature
-			logResult.Value.TransactionMeta = &rpc.TransactionMeta{
-				Fee:               res.Transaction.Meta.Fee,
-				PreBalances:       res.Transaction.Meta.PreBalances,
-				PostBalances:      res.Transaction.Meta.PostBalances,
-				PreTokenBalances:  res.Transaction.Meta.PreTokenBalances,
-				PostTokenBalances: res.Transaction.Meta.PostTokenBalances,
-			}
-			logResult.Value.Message.AccountKeys = tx.Message.AccountKeys
+			logResult.Value.TransactionResult = &res
 			return &logResult, nil
 		},
 	)
