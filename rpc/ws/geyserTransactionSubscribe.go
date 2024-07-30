@@ -12,14 +12,16 @@ type TransactionResult struct {
 	Transaction struct {
 		Transaction []string `json:"transaction"`
 		Meta        struct {
-			Err               interface{}        `json:"err"`
-			Status            interface{}        `json:"status"`
-			Fee               uint64             `json:"fee"`
-			PreBalances       []uint64           `json:"preBalances"`
-			PostBalances      []uint64           `json:"postBalances"`
-			PreTokenBalances  []rpc.TokenBalance `json:"preTokenBalances"`
-			PostTokenBalances []rpc.TokenBalance `json:"postTokenBalances"`
-			LogMessages       []string           `json:"logMessages"`
+			Err               interface{}            `json:"err"`
+			Status            interface{}            `json:"status"`
+			Fee               uint64                 `json:"fee"`
+			PreBalances       []uint64               `json:"preBalances"`
+			PostBalances      []uint64               `json:"postBalances"`
+			PreTokenBalances  []rpc.TokenBalance     `json:"preTokenBalances"`
+			PostTokenBalances []rpc.TokenBalance     `json:"postTokenBalances"`
+			LogMessages       []string               `json:"logMessages"`
+			LoadedAddresses   rpc.LoadedAddresses    `json:"loadedAddresses"`
+			InnerInstructions []rpc.InnerInstruction `json:"innerInstructions"`
 		} `json:"meta"`
 	} `json:"transaction"`
 	Signature solana.Signature `json:"signature"`
