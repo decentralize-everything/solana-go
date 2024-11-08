@@ -31,15 +31,13 @@ func (cl *Client) SupportGeyser() bool {
 	return strings.Contains(cl.rpcURL, "helius")
 }
 
-func (cl *Client) GeyserTransactionSubscribe(address string) (*LogSubscription, error) {
+func (cl *Client) GeyserTransactionSubscribe(addresses []string) (*LogSubscription, error) {
 	genSub, err := cl.subscribe(
 		[]interface{}{
 			map[string]interface{}{
-				"vote":   false,
-				"failed": false,
-				"accountInclude": []string{
-					address,
-				},
+				"vote":           false,
+				"failed":         false,
+				"accountInclude": addresses,
 			},
 		},
 		map[string]interface{}{

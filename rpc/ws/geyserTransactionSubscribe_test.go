@@ -12,7 +12,7 @@ func BenchmarkGeyserTransactionSubscribe(t *testing.B) {
 		return
 	}
 
-	sub, err := cl.GeyserTransactionSubscribe("675kPX9MHTjS2zt1qfr1NYHuzeLXfQM9H24wFSUt1Mp8")
+	sub, err := cl.GeyserTransactionSubscribe([]string{"675kPX9MHTjS2zt1qfr1NYHuzeLXfQM9H24wFSUt1Mp8"})
 	if err != nil {
 		t.Log(err)
 		return
