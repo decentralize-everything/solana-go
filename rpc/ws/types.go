@@ -35,13 +35,22 @@ type request struct {
 func newRequest(params []interface{}, method string, configuration map[string]interface{}) *request {
 	if params != nil && configuration != nil {
 		params = append(params, configuration)
+		return &request{
+			Version: "2.0",
+			Method:  method,
+			Params:  params,
+			ID:      uint64(rand.Int63()),
+		}
+	} else if params == nil && configuration != nil {
+		return &request{
+			Version: "2.0",
+			Method:  method,
+			Params:  configuration,
+			ID:      uint64(rand.Int63()),
+		}
 	}
-	return &request{
-		Version: "2.0",
-		Method:  method,
-		Params:  params,
-		ID:      uint64(rand.Int63()),
-	}
+
+	return nil
 }
 
 func (c *request) encode() ([]byte, error) {

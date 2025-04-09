@@ -236,6 +236,10 @@ func (c *Client) handleSubscriptionMessage(subID uint64, message []byte) {
 		return
 	}
 
+	if result == nil {
+		return
+	}
+
 	// this cannot be blocking or else
 	// we  will no read any other message
 	if len(sub.stream) >= cap(sub.stream) {
@@ -247,7 +251,6 @@ func (c *Client) handleSubscriptionMessage(subID uint64, message []byte) {
 	}
 
 	sub.stream <- result
-	return
 }
 
 func (c *Client) closeAllSubscription(err error) {

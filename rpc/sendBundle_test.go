@@ -8,10 +8,10 @@ import (
 )
 
 func TestSendBundle(t *testing.T) {
-	client := New("https://mainnet.block-engine.jito.wtf/api/v1/bundles")
+	client := New("https://buckeroos-megalopses-tkoouqmwbw-dedicated.helius-rpc.com?api-key=001eb0e9-7c61-4567-87f8-bcdaf22c9589")
 	signature, err := client.SendBundle(
 		context.TODO(),
-		&solana.Transaction{},
+		&solana.Transaction{Signatures: []solana.Signature{{}}},
 	)
 	if err != nil {
 		t.Log(err)
