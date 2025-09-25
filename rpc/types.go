@@ -215,7 +215,7 @@ type TransactionMeta struct {
 	Rewards []BlockReward `json:"rewards"`
 
 	LoadedAddresses LoadedAddresses `json:"loadedAddresses"`
-	
+
 	ComputeUnitsConsumed *uint64 `json:"computeUnitsConsumed"`
 }
 
@@ -394,7 +394,21 @@ type GetProgramAccountsOpts struct {
 	Filters []RPCFilter `json:"filters,omitempty"`
 }
 
+type GetProgramAccountsV2Opts struct {
+	Commitment    CommitmentType      `json:"commitment,omitempty"`
+	Encoding      solana.EncodingType `json:"encoding,omitempty"`
+	DataSlice     *DataSlice          `json:"dataSlice,omitempty"`
+	Filters       []RPCFilter         `json:"filters,omitempty"`
+	Limit         uint64              `json:"limit,omitempty"`
+	PaginationKey string              `json:"paginationKey,omitempty"`
+}
+
 type GetProgramAccountsResult []*KeyedAccount
+
+type GetProgramAccountsV2Result struct {
+	Accounts      []*KeyedAccount `json:"accounts"`
+	PaginationKey string          `json:"paginationKey,omitempty"`
+}
 
 type KeyedAccount struct {
 	Pubkey  solana.PublicKey `json:"pubkey"`
