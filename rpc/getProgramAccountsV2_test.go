@@ -4,8 +4,8 @@ import (
 	"context"
 	"testing"
 
-	"github.com/decentralize-everything/solana-go/rpc"
 	"github.com/gagliardetto/solana-go"
+	"github.com/gagliardetto/solana-go/rpc"
 )
 
 func TestGetProgramAccountsV2(t *testing.T) {
